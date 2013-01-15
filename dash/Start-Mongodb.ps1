@@ -1,0 +1,1 @@
+mongod --dbpath c:\dev\db\ --logpath c:\dev\tracks-admin\mongodb.log --installd
