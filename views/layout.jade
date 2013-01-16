@@ -5,16 +5,16 @@ html
 		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
 		link(rel='stylesheet', href='/stylesheets/style.css')
 
-		script(type='text/javascript', src='/components/jquery/jquery.js')
-		script(type='text/javascript', src='/javascripts/bootstrap.js')
+		block scripts
+			script(type='text/javascript', src='/components/jquery/jquery.js')
+			script(type='text/javascript', src='/javascripts/bootstrap.js')
 
 	body
 		nav#navbar.navbar.navbar-fixed-top
 			.navbar-inner
-				.container
-					ul
-						li.first: a(href='/regions/') Regions
-						li.last: a(href='/resorts/') Resorts
+				ul.nav
+					li.first.active: a(href='/') Home
+					li.last: a(href='/resorts/') Resorts
 		div.container
 
 		block content

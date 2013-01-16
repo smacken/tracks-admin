@@ -1,9 +1,12 @@
 extends layout
 
+block append scripts
+	script(type='text/javascript', src='/javascripts/resorts.js')
+
 block content
 	ul.breadcrumb
 		li	
-			a(href="#") Home
+			a(href="/") Home
 			span.divider / 
 		li.active Resorts 
 
@@ -11,7 +14,11 @@ block content
 		button.close(type="button", data-dismiss="alert") &times;
 		strong Alert! - 
 			| This is a warning, don't do it again
-	h1 Resorts
+	
+	.page-header
+		h1 
+			| Resorts
+			small Manage which resorts are able to be viewed
 
 	.row 
 		.offset6.span4
@@ -20,4 +27,26 @@ block content
 					span.caret
 				ul.dropdown-menu
 					li
-						a(href="#") Add Resort
+						a(id="add-resort", href="#add-modal", data-toggle="modal", data-target="#add-modal") Add Resort
+
+	div#add-modal.modal.hide.fade(role="dialog")
+		.modal-header
+			button.close(type="button", data-dismiss="modal") x
+			h3#add-header Add a Resort
+
+		.modal-body
+			form
+				fieldset
+					legend Ski Resort
+					label Resort Name
+					input#resort-name(type="text", placeholder="Enter resort name")
+
+					label Country
+					input#resort-country(type="text")
+
+					label Region
+					input#resort-region(type="text", placeholder="Which part of the country")
+
+		.modal-footer
+			button.btn(data-dismiss="modal") Close
+			button.btn.btn-primary Add Resort
