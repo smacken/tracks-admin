@@ -1,11 +1,18 @@
 
 var ResortView = (function(){
 
+  /**
+   * ResortView Constructor
+   */
   function ResortView(){
 
   }
 
   ResortView.prototype = {
+    /**
+     * Get the list of resorts
+     * @return {[Resort]}
+     */
     getResorts: function(){
 
       var resortRequest = {
