@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "main": "./spin.js",
   "dependencies": {},
-  "gitHead": "fce807676507f89f5c128307c9a6d856cc06dc34",
-  "_id": "spin.js@1.2.6",
+  "gitHead": "5495cb46206b748e584da79e499728d015e34f70",
+  "_id": "spin.js@1.2.7",
   "readme": "ERROR: No README.md file found!",
   "description": "ERROR: No README.md file found!",
-  "commit": "fce807676507f89f5c128307c9a6d856cc06dc34",
+  "commit": "5495cb46206b748e584da79e499728d015e34f70",
   "repository": {
     "type": "git",
     "url": "git://github.com/derekr/spin.js"

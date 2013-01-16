@@ -1,4 +1,23 @@
 extends layout
 
 block content
+	ul.breadcrumb
+		li	
+			a(href="#") Home
+			span.divider / 
+		li.active Resorts 
+
+	.alert
+		button.close(type="button", data-dismiss="alert") &times;
+		strong Alert! - 
+			| This is a warning, don't do it again
 	h1 Resorts
+
+	.row 
+		.offset6.span4
+			.btn-group
+				a.btn.btn-primary.dropdown-toggle(data-toggle="dropdown", href="#") Action
+					span.caret
+				ul.dropdown-menu
+					li
+						a(href="#") Add Resort

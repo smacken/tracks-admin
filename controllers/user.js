@@ -10,4 +10,4 @@ exports.list = function(req, res){
 exports.getbyid = function(req, res){
 	console.log(req.params.id);
 	res.send(req.params.id);
-}
+};
