@@ -13,6 +13,6 @@ exports.setRoutes = function(app){
 	app.get('/users', user.list);
 	app.get('/users/:id', user.getbyid);
 
-	app.get('/api/resorts/', resorts.find)
+	app.get('/api/resorts/', resorts.find);
 
 };

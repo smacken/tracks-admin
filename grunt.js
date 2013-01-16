@@ -31,7 +31,8 @@ module.exports = function(grunt){
 	        eqnull: true,
 	        node: true,
 	        es5: true,
-	        strict: false
+	        strict: false,
+	        laxcomma: true
 	      },
 	      globals: {
 	      	jQuery: true,
