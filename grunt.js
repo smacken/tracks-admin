@@ -42,6 +42,14 @@ module.exports = function(grunt){
 	      }
 	    },
 
+    	// file minification
+	    min: {
+		    dist: {
+		      src: ['models/resort.js', 'models/track.js'],
+		      dest: 'models/entities.min.js'
+		    }
+		 },
+
 	    // cyclomatic complexity of files
 	    complexity: {
             generic: {
@@ -64,5 +72,5 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-complexity');
 	
 	// Default task.
-  	grunt.registerTask('default', 'lint complexity');
+  	grunt.registerTask('default', 'lint complexity min');
 };
