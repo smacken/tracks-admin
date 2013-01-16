@@ -12,7 +12,7 @@ module.exports = function(grunt){
 		lint: {
 			files:[
 				'app.js', 'routes.js', 'config.js',
-				'public/javascripts/*.js',
+				'public/javascripts/resorts.js',
 				'models/*.js',
 				'controllers/*.js'
 			]
@@ -39,9 +39,29 @@ module.exports = function(grunt){
 	      	document: true,
 	      	$: true
 	      }
-	    }
-	});
+	    },
 
+	    // cyclomatic complexity of files
+	    complexity: {
+            generic: {
+                src: [
+                	'app.js', 'routes.js', 'errors.js',
+                	'controllers/*.js', 
+                	'models/*.js',
+                	'public/javascripts/resorts.js'
+                ],
+                options: {
+                    cyclomatic: 3,
+                    halstead: 8,
+                    maintainability: 100
+                }
+            }
+        }
+	});
+	
+	// imported tasks
+	grunt.loadNpmTasks('grunt-complexity');
+	
 	// Default task.
-  	grunt.registerTask('default', 'lint');
+  	grunt.registerTask('default', 'lint complexity');
 };
