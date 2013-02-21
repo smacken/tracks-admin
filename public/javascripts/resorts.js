@@ -27,7 +27,8 @@ var ResortView = (function(){
 
           // display the error notification
         });
-    }
+    },
+    add: function(){}
   };
 
   return ResortView;
@@ -36,4 +37,5 @@ var ResortView = (function(){
 
 $(document).ready(function(){
   var resortView = new ResortView();
+  resortView.getResorts();
 });

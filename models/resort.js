@@ -1,27 +1,14 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var ResortSchema = mongoose.Schema({
-	id: String,
-	name: String,
-	region: String, 
-	country: String,
-	siteUrl: String		
+var ResortSchema = new Schema({
+	name: {type : String, default : '', trim : true},
+	region: {type : String, default : '', trim : true}, 
+	country: {type : String, default : '', trim : true},
+	siteUrl: {type : String, default : '', trim : true},
+	createdAt : {type : Date, default : Date.now}
 });
 
-var Resort = mongoose.model('Resort', ResortSchema);
+mongoose.model('Resort', ResortSchema);
 
-Resort.find().exec(function(error, resorts){
-	
-	if(error) { console.error('no resorts'); }
 
-	console.log(resorts);
-});
-
-exports.find = function(req, res){
-	return Resort.find(function(error, resorts){
-		if(error) { return console.log(error); }
-
-		console.log('resorts found: ' + resorts.length);
-		return res.send(resorts);
-	});
-};

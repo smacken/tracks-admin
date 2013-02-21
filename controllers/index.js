@@ -1,3 +1,6 @@
+var express = require('express');
+var app = express();
+
 /**
  * GET home page
  * The index root route
@@ -6,5 +9,11 @@
  * @param  {[type]} res : response
  */
 exports.index = function(req, res){
-  res.render('index', { title: 'Tracks' });
+  var env = app.get('env');
+
+  var indexViewModel = { 
+    title: 'Tracks', 
+    env: env };
+    
+    res.render('index', indexViewModel);
 };

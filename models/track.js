@@ -1,14 +1,10 @@
 var db = require('mongoose');
-
-var TrackSchema = db.Schema({
-	id: String,
-	resortId: String,
-	name: String,
-	videoUrl: String
+var Schema = db.Schema;
+var TrackSchema = new Schema({
+	resort: {type : Schema.ObjectId, ref : 'Resort'},
+	name: {type : String, default : '', trim : true},
+  order: {type: Number, default: 1},
+	videoUrl: {type : String, default : '', trim : true}
 });
 
-var Track = db.model('Track', TrackSchema);
-
-var trackSchema = {};
-
-var Track = db.model('Track', db.Schema(trackSchema));
+db.model('Track', TrackSchema);

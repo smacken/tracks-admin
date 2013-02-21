@@ -1,23 +1,25 @@
 doctype 5
 html
-	head
-		title= title
-		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
-		link(rel='stylesheet', href='/stylesheets/style.css')
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
 
-		block scripts
-			script(type='text/javascript', src='/components/jquery/jquery.js')
-			script(type='text/javascript', src='/javascripts/bootstrap.js')
+    block scripts
+      
+      
+      script(type='text/javascript', src='/components/jquery/jquery.js')
+      script(type='text/javascript', src='/javascripts/bootstrap.js')
 
-	body
-		nav#navbar.navbar.navbar-fixed-top
-			.navbar-inner
-				ul.nav
-					li.first.active: a(href='/') Home
-					li.last: a(href='/resorts/') Resorts
-		div.container
+  body
+    nav#navbar.navbar.navbar-fixed-top
+      .navbar-inner
+        ul.nav
+          li.first.active: a(href='/') Home
+          li.last: a(href='/resorts/') Resorts
+    div.container
 
-		block content
+    block content
 
-		footer	
-			p Tracks
+    footer  
+      p Tracks

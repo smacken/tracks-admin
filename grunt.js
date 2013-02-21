@@ -1,63 +1,64 @@
 module.exports = function(grunt){
 
-	grunt.initConfig({
-		concat: {
-			dist: {
-				src: [],
-				dest: '',
-				separator: ';'
-			}
-		},
+    grunt.initConfig({
+        concat: {
+            dist: {
+                src: [],
+                dest: '',
+                separator: ';'
+            }
+        },
 
-		lint: {
-			files:[
-				'app.js', 'routes.js', 'config.js',
-				'public/javascripts/resorts.js',
-				'models/*.js',
-				'controllers/*.js'
-			]
-		},
-		jshint: {
-	      options: {
-	        curly: true,
-	        eqeqeq: true,
-	        immed: true,
-	        latedef: true,
-	        newcap: true,
-	        noarg: true,
-	        sub: true,
-	        undef: true,
-	        boss: true,
-	        eqnull: true,
-	        node: true,
-	        es5: true,
-	        strict: false,
-	        laxcomma: true
-	      },
-	      globals: {
-	      	jQuery: true,
-	      	exports: true,
-	      	document: true,
-	      	$: true
-	      }
-	    },
+        lint: {
+            files:[
+                'app.js', 'routes.js', 'config.js',
+                'public/javascripts/resorts.js',
+                'models/*.js',
+                'controllers/*.js'
+            ]
+        },
 
-    	// file minification
-	    min: {
-		    dist: {
-		      src: ['models/resort.js', 'models/track.js'],
-		      dest: 'models/entities.min.js'
-		    }
-		 },
+        jshint: {
+          options: {
+            curly: true,
+            eqeqeq: true,
+            immed: true,
+            latedef: true,
+            newcap: true,
+            noarg: true,
+            sub: true,
+            undef: true,
+            boss: true,
+            eqnull: true,
+            node: true,
+            es5: true,
+            strict: false,
+            laxcomma: true
+          },
+          globals: {
+            jQuery: true,
+            exports: true,
+            document: true,
+            $: true
+          }
+        },
 
-	    // cyclomatic complexity of files
-	    complexity: {
+        // file minification
+        min: {
+            dist: {
+              src: ['models/resort.js', 'models/track.js'],
+              dest: 'models/entities.min.js'
+            }
+         },
+
+        // cyclomatic complexity of files
+        complexity: {
             generic: {
                 src: [
-                	'app.js', 'routes.js', 'errors.js',
-                	'controllers/*.js', 
-                	'models/*.js',
-                	'public/javascripts/resorts.js'
+                    'app.js', 'routes.js', 'errors.js',
+                    'controllers/*.js', 
+                    'models/*.js',
+                    'public/javascripts/resorts.js'
                 ],
                 options: {
                     cyclomatic: 3,
@@ -66,11 +67,13 @@ module.exports = function(grunt){
                 }
             }
         }
-	});
-	
-	// imported tasks
-	grunt.loadNpmTasks('grunt-complexity');
-	
-	// Default task.
-  	grunt.registerTask('default', 'lint complexity min');
+    });
+    
+    // imported tasks
+    grunt.loadNpmTasks('grunt-complexity');
+    
+    // Default task.
+    grunt.registerTask('default', 'lint complexity');
+    grunt.registerTask('development', 'lint complexity');
+    grunt.registerTask('production', 'lint complexity');
 };
