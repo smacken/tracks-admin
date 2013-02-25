@@ -16,8 +16,12 @@ exports.configureExpress = function(app, express){
       app.use(express.logger('dev'));
       app.use(express.bodyParser());
       app.use(express.methodOverride());
+      app.use(express.compress());
+      app.use(express.staticCache());
       app.use(app.router);
-      app.use(express.static(path.join(__dirname, 'public')));
+
+      var oneYear = 31557600000;
+      app.use(express.static(path.join(__dirname, 'public', { maxAge: oneYear})));
     });
 
     app.configure('development', function(){

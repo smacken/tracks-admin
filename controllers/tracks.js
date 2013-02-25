@@ -65,3 +65,7 @@ exports.update = function(req, res){
     res.send(track);
   });
 };
+
+exports.delete = function(req, res){
+  res.send(404);
+};

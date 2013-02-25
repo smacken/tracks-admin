@@ -17,3 +17,12 @@ exports.index = function(req, res){
     
     res.render('index', indexViewModel);
 };
+
+exports.trailMap = function(req, res){
+  var trailMapViewModel = {
+    title: 'Trail Map',
+    env: app.get('env')
+  };
+
+  res.render('trail-map', trailMapViewModel);
+};

@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+		Schema = mongoose.Schema;
 
 var ResortSchema = new Schema({
 	name: {type : String, default : '', trim : true},
@@ -10,5 +10,3 @@ var ResortSchema = new Schema({
 });
 
 mongoose.model('Resort', ResortSchema);
-
-

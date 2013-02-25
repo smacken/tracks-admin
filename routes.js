@@ -8,6 +8,7 @@ var resorts = require('./models/resort');
 exports.setRoutes = function(app){
 
 	app.get('/', index.index);
+  app.get('/trail-map', index.trailMap);
 	
 	app.get('/users', user.list);
 	app.get('/users/:id', user.getbyid);
@@ -19,5 +20,6 @@ exports.setRoutes = function(app){
   app.get('/api/tracks/:resortId', tracksController.list);
   app.post('/api/track', tracksController.new);
   app.put('/api/track', tracksController.update);
+  app.delete('/api/track/:trackd', tracksController.delete);
 
 };

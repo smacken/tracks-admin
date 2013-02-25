@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
     R = require('../models/resort'),
     Resort = mongoose.model('Resort'),
     logger = require('winston'),
+    app = require('express')(),
     _ = require('underscore');
 
 /**
@@ -13,7 +14,7 @@ var mongoose = require('mongoose'),
  */
 exports.list = function(req, res){
 	logger.info('view: /resorts/');
-	res.render('resorts', { title: 'Resorts' });
+	res.render('resorts', { title: 'Resorts', env: app.get('env') });
 };
 
 /**

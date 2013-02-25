@@ -2,14 +2,20 @@ doctype 5
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    - if(env == 'development')
+      link(rel='stylesheet', href='/stylesheets/main.min.css')
+    - else
+      link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+      link(rel='stylesheet', href='/stylesheets/style.css')
 
     block scripts
-      
-      
-      script(type='text/javascript', src='/components/jquery/jquery.js')
-      script(type='text/javascript', src='/javascripts/bootstrap.js')
+      - if(env == 'development')
+        script(src='/components/base.js')
+      - else
+        script(type='text/javascript', src='/components/jquery/jquery.min.js')
+        script(type='text/javascript', src='/components/bootstrap/bootstrap.min.js')
+        script(src='/components/modernizr/modernizr-latest.js')
+        script(src='/components/knockout/build/output/knockout-latest.js')
 
   body
     nav#navbar.navbar.navbar-fixed-top
@@ -21,5 +27,7 @@ html
 
     block content
 
+    
+    
     footer  
       p Tracks
