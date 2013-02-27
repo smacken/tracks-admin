@@ -1,7 +1,7 @@
 extends layout
 
 block append scripts
-  script(type='text/javascript', src='/javascripts/resorts.js')
+  script(src='/components/resorts.min.js')
 
 block content
   ul.breadcrumb
@@ -28,6 +28,25 @@ block content
         ul.dropdown-menu
           li
             a(id="add-resort", href="#add-modal", data-toggle="modal", data-target="#add-modal") Add Resort
+  .row
+    .span12
+      table.table.table-stiped
+        thead
+          tr
+            th Resort
+            th Country
+            th Region
+            th Maps
+        tbody(data-bind='foreach: resorts')
+          tr
+            td
+              a(data-bind='text: name, attr: { href: detailUrl}')
+            td
+              span(data-bind='text: country')
+            td
+              span(data-bind='text: region')
+            td
+              a(data-bind='attr: { href: mapUrl }') Map
 
   div#add-modal.modal.hide.fade(role="dialog")
     .modal-header
@@ -35,18 +54,18 @@ block content
       h3#add-header Add a Resort
 
     .modal-body
-      form
+      form(data-bind='with: addResort')
         fieldset
           legend Ski Resort
           label Resort Name
-          input#resort-name(type="text", placeholder="Enter resort name")
+          input#resort-name(type="text", placeholder="Enter resort name", data-bind='value: name')
 
           label Country
-          input#resort-country(type="text")
+          input#resort-country(type="text", data-bind="value: country, attr: {'data-source': $parent.countries}", data-provide='typeahead', data-items='4')
 
           label Region
-          input#resort-region(type="text", placeholder="Which part of the country")
+          input#resort-region(type="text", placeholder="Which part of the country", data-bind='value: region')
 
     .modal-footer
       button.btn(data-dismiss="modal") Close
-      button.btn.btn-primary Add Resort
+      button.btn.btn-primary(data-bind='click: add', data-dismiss='modal') Add Resort

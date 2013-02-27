@@ -4,7 +4,10 @@ module.exports = function(grunt){
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             js: {
-                src: ['public/components/jquery/jquery.min.js', '/components/modernizr/modernizr-latest.js', '/components/bootstrap/bootstrap.min.js', '/components/knockout/build/output/knockout-latest.js'],
+                src: ['public/components/jquery/jquery.min.js', 
+                      'public/components/modernizr/modernizr-latest.js', 
+                      'public/components/bootstrap/bootstrap.min.js', 
+                      'public/components/knockout.js/knockout.js'],
                 dest: 'public/components/base.js',
                 separator: ';'
             },
@@ -22,7 +25,7 @@ module.exports = function(grunt){
         lint: {
             files:[
                 'app.js', 'routes.js', 'config.js',
-                'public/javascripts/resorts.js',
+                'public/javascripts/*.js',
                 'models/*.js',
                 'controllers/*.js'
             ]
@@ -50,6 +53,7 @@ module.exports = function(grunt){
             es5: true,
             strict: false,
             laxcomma: true,
+            browser: true,
             globals: {
                 jQuery: true,
                 exports: true,
@@ -57,7 +61,8 @@ module.exports = function(grunt){
                 $: true,
                 yepnope: true,
                 Kinetic: true,
-                Image: true
+                Image: true,
+                ko: true
               }
           },
           
@@ -78,7 +83,7 @@ module.exports = function(grunt){
                     'app.js', 'routes.js', 'errors.js',
                     'controllers/*.js', 
                     'models/*.js',
-                    'public/javascripts/*.js',
+                    'public/javascripts/resorts.js',
                 ],
                 options: {
                     cyclomatic: 3,
@@ -94,13 +99,31 @@ module.exports = function(grunt){
         },
 
         clean: {
-            min: ['public/javascripts/*.min.js', 'public/stylesheets/main.min.css']
+            min: ['public/javascripts/*.min.js', 
+                  'public/stylesheets/main.min.css', 
+                  'public/components/base.min.js', 
+                  'public/components/trail-map.min.js',
+                  'public/components/resorts.min.js'],
+            concat: ['public/components/base.js', 'public/components/trail-map.js']
         },
 
         cssmin: {
             compress: {
                 files: {
                     'public/stylesheets/main.min.css' : ['public/stylesheets/main.css']
+                }
+            }
+        },
+
+        uglify: {
+            options: {
+                mangle: false
+            },
+            js: {
+                files: {
+                    'public/components/base.min.js' : ['public/components/base.js'],
+                    'public/components/resorts.min.js' : ['public/javascripts/resorts.js'],
+                    'public/components/trail-map.min.js': ['public/components/trail-map.js']
                 }
             }
         }
@@ -112,11 +135,12 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-cssmin'); 
+    grunt.loadNpmTasks('grunt-contrib-uglify');
         
     grunt.loadNpmTasks('grunt-complexity');
     
     // Default task.
-    grunt.registerTask('default', ['clean', 'jshint', 'complexity', 'concat:concat', 'cssmin']);
+    grunt.registerTask('default', ['clean', 'jshint', 'complexity', 'concat', 'cssmin', 'uglify']);
     grunt.registerTask('development', 'watch lint complexity');
     grunt.registerTask('production', 'lint complexity');
 };

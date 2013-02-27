@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  h1#title(data-id='#{resortId}') Resort Maps
+
+  p(data-bind='text: $data.resort.title')
+  .resort-details(data-bind='with: resort')
+    strong.lead(data-bind='text: name')
+    strong(data-bind='text: title')
+
+  .row 
+    .offset6.span4
+      .btn-group
+        button.btn.btn-primary.dropdown-toggle(type='button', data-toggle="dropdown", href="#") 
+          i.icon-cog.icon-white
+          span.caret
+        ul.dropdown-menu
+          li
+            a(id="add-resort", href="#add-modal", data-toggle="modal", data-target="#add-modal") Add Map
+
+  .row
+    .span12
+      .resort-maps(data-bind='foreach: maps')
+        table.table
+
+  div#add-modal.modal.hide.fade(role="dialog")
+    .modal-header
+      button.close(type="button", data-dismiss="modal") x
+      h3#add-header Add a Resort
+
+    .modal-body
+      form(data-bind='with: newMap')
+        fieldset
+          legend Ski Resort Map
+          #name-group.control-group
+            label Resort Map Name
+            input#resort-name(type="text", placeholder="Enter map name", data-bind='value: name', required)
+          #pic-group.control-group
+            label Picture
+            input#resort-pic(type="file", data-bind="value: mapUrl", required)
+
+    .modal-footer
+      button.btn(data-dismiss="modal") Close
+      button.btn.btn-primary(data-bind='click: addMap', data-dismiss='modal') Add Map
+
+  script(src='/javascripts/resort-maps.js');
